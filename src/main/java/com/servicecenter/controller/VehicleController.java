@@ -23,4 +23,21 @@ public class VehicleController {
     public List<Vehicle> getAllVehicles() {
         return vehicleService.getAllVehicles();
     }
+    @GetMapping("/customer/{id}")
+    public List<Vehicle> getVehiclesByCustomer(@PathVariable Long id) {
+        return vehicleService.getVehiclesByCustomerId(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteVehicle(@PathVariable Long id) {
+        vehicleService.deleteVehicle(id);
+        return "Vehicle deleted successfully";
+    }
+
+    @PutMapping("/{id}")
+    public Vehicle updateVehicle(@PathVariable Long id, @RequestBody Vehicle vehicle) {
+        vehicle.setId(id);
+        return vehicleService.saveVehicle(vehicle);
+
+    }
 }
